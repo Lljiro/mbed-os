@@ -16,11 +16,11 @@
 ]]
 
 # Unit test suite name
-set(TEST_SUITE_NAME "lorawan_LoRaWANStack")
+set(TEST_SUITE_NAME "lorawan_LoRaWANInterface")
 
 # Source files
 set(unittest-sources
-  ../features/lorawan/LoRaWANStack.cpp
+  ../features/lorawan/LoRaWANInterface.cpp
 )
 
 # Add test specific include paths
@@ -31,33 +31,24 @@ set(unittest-includes ${unittest-includes}
 
 # Test & stub files
 set(unittest-test-sources
-  features/lorawan/lorawanstack/Test_LoRaWANStack.cpp
+  features/lorawan/lorawaninterface/Test_LoRaWANInterface.cpp
   stubs/LoRaPHY_stub.cpp
+  stubs/LoRaWANStack_stub.cpp
   stubs/LoRaMac_stub.cpp
   stubs/mbed_assert_stub.cpp
-  stubs/mbed_atomic_stub.c
   stubs/LoRaMacCrypto_stub.cpp
   stubs/LoRaMacChannelPlan_stub.cpp
   stubs/LoRaWANTimer_stub.cpp
   stubs/LoRaMacCommand_stub.cpp
-  stubs/EventQueue_stub.cpp
-  stubs/equeue_stub.c
+  stubs/LoRaPHYEU868_stub.cpp
   stubs/Mutex_stub.cpp
+  stubs/mbed_rtc_time_stub.cpp
 )
 
 set(unittest-test-flags
-  -DMBED_CONF_LORA_OVER_THE_AIR_ACTIVATION=true
-  -DMBED_CONF_LORA_AUTOMATIC_UPLINK_MESSAGE=true
+  -DMBED_CONF_LORA_PHY=EU868
   -DMBED_CONF_LORA_TX_MAX_SIZE=255
 )
-
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DMBED_CONF_LORA_REJOIN_TYPE1_SEND_PERIOD=3600")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DMBED_CONF_LORA_REJOIN_TYPE1_SEND_PERIOD=3600")
-
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DMBED_CONF_LORA_CLASS_B_BEACONLESS_PERIOD=7200")
-set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -DMBED_CONF_LORA_CLASS_B_BEACONLESS_PERIOD=7200")
-
-
 
 
 
