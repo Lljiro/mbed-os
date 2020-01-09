@@ -16,37 +16,31 @@
 ]]
 
 # Unit test suite name
-set(TEST_SUITE_NAME "lorawan_LoRaPHY")
+set(TEST_SUITE_NAME "lorawan_LoRaMacCrypto")
 
 # Source files
 set(unittest-sources
-  ../features/lorawan/lorastack/phy/LoRaPHY.cpp
-  ../features/lorawan/LoRaRadio.cpp
+  ../features/lorawan/lorastack/mac/LoRaMacCrypto.cpp
 )
 
 # Add test specific include paths
 set(unittest-includes ${unittest-includes}
   target_h
-  ../features/lorawan/lorastack/phy
+  ../features/lorawan/lorastack/mac
 )
 
 # Test & stub files
 set(unittest-test-sources
-  features/lorawan/loraphy/Test_LoRaPHY.cpp
-  stubs/LoRaWANTimer_stub.cpp
+  features/lorawan/loramaccrypto/Test_LoRaMacCrypto.cpp
+  stubs/cipher_stub.c
+  stubs/aes_stub.c
+  stubs/cmac_stub.c
   stubs/mbed_assert_stub.cpp
-  stubs/mbed_rtc_time_stub.cpp
+  ../features/nanostack/coap-service/test/coap-service/unittest/stub/mbedtls_stub.c
+
 )
 
 set(unittest-test-flags
-  -DMBED_CONF_LORA_WAKEUP_TIME=5
-  -DMBED_CONF_LORA_DUTY_CYCLE_ON_JOIN=true
-  -DMBED_CONF_LORA_UPLINK_PREAMBLE_LENGTH=8
   -DMBED_CONF_LORA_TX_MAX_SIZE=255
-  -DMBED_CONF_LORA_NB_TRIALS=2
-  -DMBED_CONF_LORA_REJOIN_DEFAULT_MAX_TIME=3600
-  -DMBED_CONF_LORA_REJOIN_DEFAULT_MAX_COUNT=10
-  -DMBED_CONF_LORA_BEACON_PREAMBLE_LENGTH=7
-  -DMBED_CONF_LORA_DOWNLINK_PREAMBLE_LENGTH=5
+  -DMBED_CONF_LORA_VERSION=0
 )
-

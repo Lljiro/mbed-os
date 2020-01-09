@@ -16,12 +16,11 @@
 ]]
 
 # Unit test suite name
-set(TEST_SUITE_NAME "lorawan_LoRaPHY")
+set(TEST_SUITE_NAME "lorawan_LoRaPHYAS923")
 
 # Source files
 set(unittest-sources
-  ../features/lorawan/lorastack/phy/LoRaPHY.cpp
-  ../features/lorawan/LoRaRadio.cpp
+  ../features/lorawan/lorastack/phy/LoRaPHYAS923.cpp
 )
 
 # Add test specific include paths
@@ -32,21 +31,25 @@ set(unittest-includes ${unittest-includes}
 
 # Test & stub files
 set(unittest-test-sources
-  features/lorawan/loraphy/Test_LoRaPHY.cpp
+  features/lorawan/loraphyas923/Test_LoRaPHYAS923.cpp
+  stubs/LoRaPHY_stub.cpp
   stubs/LoRaWANTimer_stub.cpp
   stubs/mbed_assert_stub.cpp
-  stubs/mbed_rtc_time_stub.cpp
+
 )
 
 set(unittest-test-flags
-  -DMBED_CONF_LORA_WAKEUP_TIME=5
-  -DMBED_CONF_LORA_DUTY_CYCLE_ON_JOIN=true
-  -DMBED_CONF_LORA_UPLINK_PREAMBLE_LENGTH=8
   -DMBED_CONF_LORA_TX_MAX_SIZE=255
-  -DMBED_CONF_LORA_NB_TRIALS=2
-  -DMBED_CONF_LORA_REJOIN_DEFAULT_MAX_TIME=3600
-  -DMBED_CONF_LORA_REJOIN_DEFAULT_MAX_COUNT=10
-  -DMBED_CONF_LORA_BEACON_PREAMBLE_LENGTH=7
   -DMBED_CONF_LORA_DOWNLINK_PREAMBLE_LENGTH=5
+  -DMBED_CONF_LORA_UPLINK_PREAMBLE_LENGTH=8
 )
+
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DMBED_CONF_LORA_NWKSENCKEY=\"{0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}\"")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DMBED_CONF_LORA_NWKSENCKEY=\"{0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}\"")
+
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DMBED_CONF_LORA_SNWKSINTKEY=\"{0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}\"")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DMBED_CONF_LORA_SNWKSINTKEY=\"{0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}\"")
+
+
+
 
