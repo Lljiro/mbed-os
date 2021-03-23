@@ -14,6 +14,8 @@ target_sources(mbed-lorawan
         mac/LoRaMacChannelPlan.cpp
         mac/LoRaMacCommand.cpp
         mac/LoRaMacCrypto.cpp
+        mac/LoRaMacClassB.cpp
+        mac/LoRaMacClassBInterface.cpp
 
         phy/LoRaPHY.cpp
         phy/LoRaPHYAS923.cpp

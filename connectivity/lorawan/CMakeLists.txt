@@ -16,6 +16,7 @@ target_sources(mbed-lorawan
     INTERFACE
         source/LoRaWANInterface.cpp
         source/LoRaWANStack.cpp
+        source/LoRaRadio.cpp
 )
 
 target_compile_definitions(mbed-lorawan
