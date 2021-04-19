@@ -828,6 +828,9 @@ void SX1276_LoRaRadio::sleep()
 
     // put module in sleep mode
     set_operation_mode(RF_OPMODE_SLEEP);
+
+    // turn off tcxo
+    set_tcxo(false);
 }
 
 /**
@@ -1258,6 +1261,26 @@ void SX1276_LoRaRadio::read_fifo(uint8_t *buffer, uint8_t size)
 }
 
 /**
+ * Sets the tcxo pin if connected
+ */
+void SX1276_LoRaRadio::set_tcxo(bool mode){
+    if (_rf_ctrls.tcxo != NC)
+    {
+        if (mode == true)
+        {
+            if (_tcxo == 0)
+            {
+                _tcxo = 1;
+                ThisThread::sleep_for(5);
+            }
+        }
+        else{
+            _tcxo = 0
+        }
+    }
+}
+
+/**
  * Sets up operation mode
  */
 void SX1276_LoRaRadio::set_operation_mode(uint8_t mode)
@@ -1265,6 +1288,7 @@ void SX1276_LoRaRadio::set_operation_mode(uint8_t mode)
     if (mode == RF_OPMODE_SLEEP) {
         set_low_power_mode();
     } else {
+        set_tcxo(true);
         set_low_power_mode();
         set_antenna_switch(mode);
     }

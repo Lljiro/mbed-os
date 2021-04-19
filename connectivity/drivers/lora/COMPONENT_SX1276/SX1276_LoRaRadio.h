@@ -413,6 +413,7 @@ private:
     void gpio_deinit();
     void setup_interrupts();
     void set_operation_mode(uint8_t operation_mode);
+    void set_tcxo(bool mode);
     void set_low_power_mode();
     void set_sx1276_variant_type();
     uint8_t get_pa_conf_reg(uint32_t channel);
