@@ -1272,10 +1272,10 @@ void SX1276_LoRaRadio::set_tcxo(bool mode){
             {
                 _tcxo = 1;
                 ThisThread::sleep_for(5);
-            }
+            }   
         }
         else{
-            _tcxo = 0
+            _tcxo = 0;
         }
     }
 }
